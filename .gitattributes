@@ -1,0 +1,15 @@
+# 自动处理换行符
+* text=auto
+
+# 明确指定某些文件类型
+*.js text
+*.ts text
+*.json text
+*.md text
+*.yml text
+*.yaml text
+
+# 二进制文件不转换
+*.png binary
+*.jpg binary
+*.gif binary
