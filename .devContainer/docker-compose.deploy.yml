@@ -28,7 +28,7 @@ services:
       image: caddy:latest
       container_name: caddy
       ports:
-        - "8888:5173"
+        - "80:80"
         - "443:443"
       volumes:
         - ./caddy/Caddyfile:/etc/caddy/Caddyfile
