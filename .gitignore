@@ -33,7 +33,8 @@ dist-ssr
 
 .turbo
 
-.devcontainer/data
-.devcontainer/postgresql_data
-.devcontainer/clickhouse_data
-.devcontainer/postgres_data
+.devContainer/data
+.devContainer/postgresql_data
+.devContainer/clickhouse_data
+.devContainer/postgres_data
+.devContainer/dist
