@@ -1,2 +1,17 @@
 ﻿#command
 commitlint
+
+#task name
+longtask
+
+onTTFB
+TTFBThresholds
+
+#event name
+bfcacheRestoreTime
+bfcache
+
+mimao
+clickhouse
+tangwenlin41
+tzsentry

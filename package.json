@@ -1,41 +1,57 @@
-﻿{
-  "name": "tz-sentry",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "type": "module",
-  "scripts": {
-    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
-    "lint:staged": "lint-staged",
-    "spellcheck": "cspell lint --dot --gitignore --color --cache --show-suggestions \"(packages|apps|demos)/**/*.@(html|js|cjs|mjs|ts|tsx|css|scss|md)\"",
-    "commit": "git-cz",
-    "prepare": "husky"
-  },
-  "config": {
-    "commitizen": {
-      "path": "node_modules/cz-git"
+{
+    "name": "tz-sentry",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "type": "module",
+    "packageManager": "pnpm@11.7.0",
+    "scripts": {
+        "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+        "lint:staged": "lint-staged",
+        "spellcheck": "cspell lint --dot --gitignore --color --cache --show-suggestions \"(packages|apps|demos)/**/*.@(html|js|cjs|mjs|ts|tsx|css|scss|md)\"",
+        "commit": "git-cz",
+        "prepare": "husky",
+        "clean`": "run-s clean:build clean:caches",
+        "clean:build": "pnpm --filter @tz-sentry/* clean",
+        "clean:caches": "rimraf .turbo/cache **/*/.turbo",
+        "clean:deps": "rimraf node_modules **/*/node_modules",
+        "clean:all": "run-s clean:build clean:caches clean:deps clean:dist",
+        "build": "turbo build",
+        "build:watch": "turbo build:watch",
+        "dev": "turbo dev",
+        "docker:start": "docker compose -p sentry-monitor -f .devContainer/docker-compose.yaml up -d",
+        "docker:stop": "docker compose -p sentry-monitor down",
+        "docker:deploy": "docker compose -p sentry-monitor -f .devContainer/docker-compose.deploy.yml up -d",
+        "docker:stop-deploy": "docker compose -p sentry-monitor -f .devContainer/docker-compose.deploy.yml down"
+    },
+    "config": {
+        "commitizen": {
+            "path": "node_modules/cz-git"
+        }
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "@commitlint/cli": "20.2.0",
+        "@commitlint/config-conventional": "20.2.0",
+        "@eslint/js": "9.39.1",
+        "@types/node": "22.15.30",
+        "commitizen": "4.3.1",
+        "cspell": "9.4.0",
+        "cz-git": "1.12.0",
+        "eslint-plugin-prettier": "5.5.4",
+        "eslint-plugin-react-hooks": "^7.0.1",
+        "eslint-plugin-react-refresh": "0.4.24",
+        "eslint-plugin-simple-import-sort": "12.1.1",
+        "fast-glob": "3.3.3",
+        "globals": "16.5.0",
+        "husky": "9.1.7",
+        "lint-staged": "16.2.7",
+        "typescript": "5.9.3",
+        "typescript-eslint": "8.48.1",
+        "turbo": "2.6.3",
+        "rimraf": "6.1.2",
+        "npm-run-all2": "8.0.4"
     }
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "@types/node": "22.5.5",
-    "typescript": "5.9.3",
-    "@eslint/js": "9.39.1",
-    "globals": "16.5.0",
-    "typescript-eslint": "8.48.1",
-    "eslint-plugin-react-refresh": "0.4.24",
-    "eslint-plugin-react-hooks": "^7.0.1",
-    "eslint-plugin-prettier": "5.5.4",
-    "eslint-plugin-simple-import-sort": "12.1.1",
-    "cspell": "9.4.0",
-    "cz-git": "1.12.0",
-    "commitizen": "4.3.1",
-    "fast-glob": "3.3.3",
-    "@commitlint/config-conventional": "20.2.0",
-    "@commitlint/cli": "20.2.0",
-    "husky": "9.1.7",
-    "lint-staged": "16.2.7"
-  }
 }

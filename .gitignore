@@ -36,3 +36,4 @@ dist-ssr
 .devcontainer/data
 .devcontainer/postgresql_data
 .devcontainer/clickhouse_data
+.devcontainer/postgres_data

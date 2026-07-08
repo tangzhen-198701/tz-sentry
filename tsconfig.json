@@ -1,19 +1,13 @@
-﻿/*
- *   Copyright (c) 2024 濡欑爜瀛﹂櫌 @Heyi
- *   All rights reserved.
- *   濡欑爜瀛﹂櫌瀹樻柟鍑哄搧锛屼綔鑰?@Heyi锛屼緵瀛﹀憳瀛︿範浣跨敤锛屽彲鐢ㄤ綔缁冧範锛屽彲鐢ㄤ綔缇庡寲绠€鍘嗭紝涓嶅彲寮€婧愩€?
- */
 {
     "compilerOptions": {
-        "alwaysStrict": false,
         "declaration": true,
         "declarationMap": true,
-        "downlevelIteration": true,
         "importHelpers": true,
         "inlineSources": true,
         "isolatedModules": true,
-        "lib": ["ESNext"],
-        "moduleResolution": "node",
+        "lib": ["ES2018"],
+        "module": "ESNext",
+        "moduleResolution": "bundler",
         "noErrorTruncation": true,
         "noFallthroughCasesInSwitch": true,
         "noImplicitReturns": true,
@@ -24,6 +18,7 @@
         "strict": true,
         "strictBindCallApply": false,
         "target": "es2018",
+        "types": [],
         "noUncheckedIndexedAccess": true
     }
 }

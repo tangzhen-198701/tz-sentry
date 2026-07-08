@@ -1,0 +1,12 @@
+packages:
+  - 'packages/*'
+  - 'apps/backend/*'
+  - 'apps/frontend/*'
+  - 'demos/*'
+nodeLinker: hoisted
+allowBuilds:
+  '@nestjs/core': set this to true or false
+  esbuild: false
+  msgpackr-extract: false
+overrides:
+  typescript: 5.9.3

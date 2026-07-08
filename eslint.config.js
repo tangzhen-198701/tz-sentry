@@ -8,8 +8,8 @@ import importSort from 'eslint-plugin-simple-import-sort'
 import tseslint from 'typescript-eslint'
 
 const ignores = [
-    'dist',
-    'build',
+    '**/dist/**',
+    '**/build/**',
     '**/*.js',
     '**/*.mjs',
     '**/*.d.ts',
@@ -27,7 +27,7 @@ const packagesConfig = {
         },
     },
     rules: {
-        'no-console': 'error',
+        // 'no-console': 'warn',
     },
 }
 
@@ -45,7 +45,7 @@ const frontendConfig = {
     rules: {
         ...reactHooks.configs.recommended.rules,
         'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
-        'no-console': 'error',
+        // 'no-console': 'error',
     },
 }
 
@@ -63,13 +63,18 @@ const backendConfig = {
         '@typescript-eslint/explicit-module-boundary-types': 'off',
         '@typescript-eslint/interface-name-prefix': 'off',
         '@typescript-eslint/no-explicit-any': 'off',
-        'no-console': 'error',
+        // 'no-console': 'error',
+        '@typescript-eslint/no-floating-promises': 'warn',
+        '@typescript-eslint/no-unsafe-argument': 'warn',
+        'prettier/prettier': ['error', { endOfLine: 'auto' }],
     },
 }
 
 export default tseslint.config(
     {
         ignores,
+    },
+    {
         extends: [eslint.configs.recommended, ...tseslint.configs.recommended],
         plugins: {
             prettier: eslintPrettier,

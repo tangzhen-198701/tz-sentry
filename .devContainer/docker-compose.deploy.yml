@@ -1,0 +1,37 @@
+#部署的docker 编排配置
+include:
+    - docker-compose.yaml
+
+services:
+   node-server:
+    image: node:22-alpine
+    container_name: node-server
+    ports:
+      - "4001:4001"
+    environment:
+      - NODE_ENV=production
+      - CLICKHOUSE_URL=http://mimao-clickhouse-demo:8123
+      - POSTGRES_HOST=mimao-clickhouse-demo-postgres
+    # 挂载本地资源
+    volumes:
+      - ../:/app/monitor
+      # - ../apps/backend/monitor:/app/monitor
+    # 工作目录
+    working_dir: /app/monitor/apps/backend/monitor
+    # 执行脚本
+    command: "node dist/main.js"
+    depends_on:
+      - mimao-clickhouse-demo
+      - mimao-clickhouse-demo-postgres
+
+   caddy:
+      image: caddy:latest
+      container_name: caddy
+      ports:
+        - "8888:5173"
+        - "443:443"
+      volumes:
+        - ./caddy/Caddyfile:/etc/caddy/Caddyfile
+        - ../apps/frontend/monitor/dist:/app/frontend/monitor/dist
+      depends_on:
+        - node-server

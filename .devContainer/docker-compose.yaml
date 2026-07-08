@@ -1,0 +1,28 @@
+services:
+  mimao-clickhouse-demo:
+    image: clickhouse:latest
+    container_name: clickhouse
+    ports:
+      - "8123:8123"
+      - "9000:9000"
+    environment:
+      - CLICKHOUSE_USER=tangwenlin41
+      - CLICKHOUSE_PASSWORD=tangwenlin41
+      - CLICKHOUSE_DB=tangwenlin41
+    volumes:
+      - clickhouse_data:/var/lib/clickhouse
+  
+  mimao-clickhouse-demo-postgres:
+    image: postgres:latest
+    container_name: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=postgres
+    volumes:
+      - ./postgres_data:/var/lib/postgresql
+
+volumes:
+  clickhouse_data:
