@@ -4,7 +4,6 @@ tz.shulide.top {
         header +Cache-Control "max-age=0, private, must-revalidate"
 
         handle_path /api/* {
-                rewrite * /api{path}
                 reverse_proxy node-server:4001
         }
 
