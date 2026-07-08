@@ -1,13 +1,17 @@
-# 自动处理换行符
-* text=auto
+# 自动处理换行符，统一使用 LF
+* text=auto eol=lf
 
 # 明确指定某些文件类型
-*.js text
-*.ts text
-*.json text
-*.md text
-*.yml text
-*.yaml text
+*.js text eol=lf
+*.ts text eol=lf
+*.json text eol=lf
+*.md text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+
+# Windows 脚本文件使用 CRLF
+*.bat text eol=crlf
+*.cmd text eol=crlf
 
 # 二进制文件不转换
 *.png binary

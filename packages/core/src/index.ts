@@ -10,4 +10,4 @@ const core: ICore = {
     hobby: ['play', 'sleep'],
 }
 
-export { core }
+export { core, type ICore }
