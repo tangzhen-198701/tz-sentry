@@ -2,6 +2,15 @@
     "import": ["@cspell/dict-lorem-ipsum/cspell-ext.json"],
     "caseSensitive": false,
     "dictionaries": ["custom-words"],
+    "ignorePaths": [
+        "**/node_modules/**",
+        "**/dist/**",
+        ".devContainer/clickhouse/**",
+        ".devContainer/dist/**",
+        ".devContainer/clickhouse_data/**",
+        ".devContainer/postgres_data/**",
+        ".devContainer/postgresql_data/**"
+    ],
     "dictionaryDefinitions": [
         {
             "name": "custom-words",
