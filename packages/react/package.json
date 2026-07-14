@@ -1,0 +1,20 @@
+{
+    "name": "@tz-sentry/react",
+    "version": "1.0.0",
+    "type": "module",
+    "main": "dist/index.cjs",
+    "module": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "scripts": {
+        "build": "tsup src/index.ts --format esm,cjs --dts",
+        "dev": "tsup src/index.ts --format esm,cjs --dts --watch",
+        "typecheck": "tsc --noEmit"
+    },
+    "dependencies": {
+        "@tz-sentry/browser": "workspace:*",
+        "@tz-sentry/core": "workspace:*"
+    },
+    "devDependencies": {
+        "tsup": "8.5.1"
+    }
+}

@@ -4,6 +4,7 @@ packages:
   - 'apps/frontend/*'
   - 'demos/*'
 nodeLinker: hoisted
+verifyDepsBeforeRun: warn
 allowBuilds:
   '@nestjs/core': set this to true or false
   esbuild: false

@@ -39,7 +39,7 @@ import {
     PlusIcon,
     TrendingUpIcon,
 } from 'lucide-react'
-import * as React from 'react'
+import { useId, useMemo, useState } from 'react'
 import { Area, AreaChart, CartesianGrid, XAxis } from 'recharts'
 import { z } from 'zod'
 
@@ -62,7 +62,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { useIsMobile } from '@/hooks/use-mobile'
 
-export const schema = z.object({
+export const Schema = z.object({
     id: z.string(),
     type: z.string(),
     name: z.string(),
@@ -83,7 +83,7 @@ function DragHandle({ id }: { id: number }) {
     )
 }
 
-const columns: ColumnDef<z.infer<typeof schema>>[] = [
+const columns: ColumnDef<z.infer<typeof Schema>>[] = [
     {
         id: 'drag',
         header: () => null,
@@ -154,7 +154,7 @@ const columns: ColumnDef<z.infer<typeof schema>>[] = [
     },
 ]
 
-function DraggableRow({ row }: { row: Row<z.infer<typeof schema>> }) {
+function DraggableRow({ row }: { row: Row<z.infer<typeof Schema>> }) {
     const { transform, transition, setNodeRef, isDragging } = useSortable({
         id: row.original.id,
     })
@@ -177,20 +177,20 @@ function DraggableRow({ row }: { row: Row<z.infer<typeof schema>> }) {
     )
 }
 
-export function DataTable({ data: initialData }: { data: z.infer<typeof schema>[] }) {
-    const [data, setData] = React.useState(() => initialData)
-    const [rowSelection, setRowSelection] = React.useState({})
-    const [columnVisibility, setColumnVisibility] = React.useState<VisibilityState>({})
-    const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([])
-    const [sorting, setSorting] = React.useState<SortingState>([])
-    const [pagination, setPagination] = React.useState({
+export function DataTable({ data: initialData }: { data: z.infer<typeof Schema>[] }) {
+    const [data, setData] = useState(() => initialData)
+    const [rowSelection, setRowSelection] = useState({})
+    const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({})
+    const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
+    const [sorting, setSorting] = useState<SortingState>([])
+    const [pagination, setPagination] = useState({
         pageIndex: 0,
         pageSize: 10,
     })
-    const sortableId = React.useId()
+    const sortableId = useId()
     const sensors = useSensors(useSensor(MouseSensor, {}), useSensor(TouchSensor, {}), useSensor(KeyboardSensor, {}))
 
-    const dataIds = React.useMemo<UniqueIdentifier[]>(() => data?.map(({ id }) => id) || [], [data])
+    const dataIds = useMemo<UniqueIdentifier[]>(() => data?.map(({ id }) => id) || [], [data])
 
     const table = useReactTable({
         data,
@@ -442,7 +442,7 @@ const chartConfig = {
     },
 } satisfies ChartConfig
 
-export function TableCellViewer({ item }: { item: z.infer<typeof schema> }) {
+export function TableCellViewer({ item }: { item: z.infer<typeof Schema> }) {
     const isMobile = useIsMobile()
 
     return (

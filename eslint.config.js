@@ -57,6 +57,10 @@ const backendConfig = {
             ...globals.jest,
         },
         parser: tseslint.parser,
+        parserOptions: {
+            projectService: true,
+            tsconfigRootDir: import.meta.dirname,
+        },
     },
     rules: {
         '@typescript-eslint/explicit-function-return-type': 'off',

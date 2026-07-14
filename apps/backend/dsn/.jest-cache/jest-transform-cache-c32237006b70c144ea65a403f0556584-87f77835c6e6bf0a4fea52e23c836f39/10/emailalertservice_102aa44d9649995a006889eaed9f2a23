@@ -1,0 +1,44 @@
+0d208daec0e87e2ce5ddfbe3b2c143a4
+"use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
+var EmailAlertsService_1;
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.EmailAlertsService = void 0;
+const bull_1 = require("@nestjs/bull");
+const common_1 = require("@nestjs/common");
+let EmailAlertsService = EmailAlertsService_1 = class EmailAlertsService {
+    queue;
+    logger = new common_1.Logger(EmailAlertsService_1.name);
+    constructor(queue) {
+        this.queue = queue;
+    }
+    async sendErrorAlert(data, options) {
+        const jobData = {
+            ...data,
+            metadata: {
+                createdAt: Date.now(),
+                source: 'SpanService',
+            },
+        };
+        const job = await this.queue.add('send-error-alert', jobData, options);
+        this.logger.debug(`Email alert job enqueued. ID: ${job.id}`);
+    }
+};
+exports.EmailAlertsService = EmailAlertsService;
+exports.EmailAlertsService = EmailAlertsService = EmailAlertsService_1 = __decorate([
+    (0, common_1.Injectable)(),
+    __param(0, (0, bull_1.InjectQueue)('email-alerts')),
+    __metadata("design:paramtypes", [Object])
+], EmailAlertsService);
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJmaWxlIjoiRTpcXGNvZGUtcHJvamVjdFxcdHotc2VudHJ5XFxhcHBzXFxiYWNrZW5kXFxkc25cXHNyY1xcbW9kdWxlc1xcZW1haWwtYWxlcnRcXGVtYWlsLWFsZXJ0LnNlcnZpY2UudHMiLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7Ozs7Ozs7OztBQUFBLHVDQUEyQztBQUMzQywyQ0FBb0Q7QUFlN0MsSUFBTSxrQkFBa0IsMEJBQXhCLE1BQU0sa0JBQWtCO0lBS1Y7SUFKRixNQUFNLEdBQUcsSUFBSSxlQUFNLENBQUMsb0JBQWtCLENBQUMsSUFBSSxDQUFDLENBQUM7SUFFOUQsWUFFbUIsS0FBK0I7UUFBL0IsVUFBSyxHQUFMLEtBQUssQ0FBMEI7SUFDL0MsQ0FBQztJQUVKLEtBQUssQ0FBQyxjQUFjLENBQ2xCLElBQXlDLEVBQ3pDLE9BQW9CO1FBRXBCLE1BQU0sT0FBTyxHQUFzQjtZQUNqQyxHQUFHLElBQUk7WUFDUCxRQUFRLEVBQUU7Z0JBQ1IsU0FBUyxFQUFFLElBQUksQ0FBQyxHQUFHLEVBQUU7Z0JBQ3JCLE1BQU0sRUFBRSxhQUFhO2FBQ3RCO1NBQ0YsQ0FBQztRQUVGLE1BQU0sR0FBRyxHQUFHLE1BQU0sSUFBSSxDQUFDLEtBQUssQ0FBQyxHQUFHLENBQUMsa0JBQWtCLEVBQUUsT0FBTyxFQUFFLE9BQU8sQ0FBQyxDQUFDO1FBRXZFLElBQUksQ0FBQyxNQUFNLENBQUMsS0FBSyxDQUFDLGlDQUFpQyxHQUFHLENBQUMsRUFBRSxFQUFFLENBQUMsQ0FBQztJQUMvRCxDQUFDO0NBQ0YsQ0FBQTtBQXhCWSxnREFBa0I7NkJBQWxCLGtCQUFrQjtJQUQ5QixJQUFBLG1CQUFVLEdBQUU7SUFLUixXQUFBLElBQUEsa0JBQVcsRUFBQyxjQUFjLENBQUMsQ0FBQTs7R0FKbkIsa0JBQWtCLENBd0I5QiIsIm5hbWVzIjpbXSwic291cmNlcyI6WyJFOlxcY29kZS1wcm9qZWN0XFx0ei1zZW50cnlcXGFwcHNcXGJhY2tlbmRcXGRzblxcc3JjXFxtb2R1bGVzXFxlbWFpbC1hbGVydFxcZW1haWwtYWxlcnQuc2VydmljZS50cyJdLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBJbmplY3RRdWV1ZSB9IGZyb20gJ0BuZXN0anMvYnVsbCc7XG5pbXBvcnQgeyBJbmplY3RhYmxlLCBMb2dnZXIgfSBmcm9tICdAbmVzdGpzL2NvbW1vbic7XG5pbXBvcnQgdHlwZSB7IEpvYk9wdGlvbnMsIFF1ZXVlIH0gZnJvbSAnYnVsbCc7XG5cbmV4cG9ydCBpbnRlcmZhY2UgRW1haWxBbGVydEpvYkRhdGEge1xuICB0bzogc3RyaW5nO1xuICBzdWJqZWN0OiBzdHJpbmc7XG4gIHRlbXBsYXRlOiBzdHJpbmc7XG4gIGNvbnRleHQ/OiBSZWNvcmQ8c3RyaW5nLCBhbnk+O1xuICBtZXRhZGF0YToge1xuICAgIGNyZWF0ZWRBdDogbnVtYmVyO1xuICAgIHNvdXJjZTogc3RyaW5nO1xuICB9O1xufVxuXG5ASW5qZWN0YWJsZSgpXG5leHBvcnQgY2xhc3MgRW1haWxBbGVydHNTZXJ2aWNlIHtcbiAgcHJpdmF0ZSByZWFkb25seSBsb2dnZXIgPSBuZXcgTG9nZ2VyKEVtYWlsQWxlcnRzU2VydmljZS5uYW1lKTtcblxuICBjb25zdHJ1Y3RvcihcbiAgICBASW5qZWN0UXVldWUoJ2VtYWlsLWFsZXJ0cycpXG4gICAgcHJpdmF0ZSByZWFkb25seSBxdWV1ZTogUXVldWU8RW1haWxBbGVydEpvYkRhdGE+LFxuICApIHt9XG5cbiAgYXN5bmMgc2VuZEVycm9yQWxlcnQoXG4gICAgZGF0YTogT21pdDxFbWFpbEFsZXJ0Sm9iRGF0YSwgJ21ldGFkYXRhJz4sXG4gICAgb3B0aW9ucz86IEpvYk9wdGlvbnMsXG4gICk6IFByb21pc2U8dm9pZD4ge1xuICAgIGNvbnN0IGpvYkRhdGE6IEVtYWlsQWxlcnRKb2JEYXRhID0ge1xuICAgICAgLi4uZGF0YSxcbiAgICAgIG1ldGFkYXRhOiB7XG4gICAgICAgIGNyZWF0ZWRBdDogRGF0ZS5ub3coKSxcbiAgICAgICAgc291cmNlOiAnU3BhblNlcnZpY2UnLFxuICAgICAgfSxcbiAgICB9O1xuXG4gICAgY29uc3Qgam9iID0gYXdhaXQgdGhpcy5xdWV1ZS5hZGQoJ3NlbmQtZXJyb3ItYWxlcnQnLCBqb2JEYXRhLCBvcHRpb25zKTtcblxuICAgIHRoaXMubG9nZ2VyLmRlYnVnKGBFbWFpbCBhbGVydCBqb2IgZW5xdWV1ZWQuIElEOiAke2pvYi5pZH1gKTtcbiAgfVxufVxuIl0sInZlcnNpb24iOjN9

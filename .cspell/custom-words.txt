@@ -15,3 +15,6 @@ mimao
 clickhouse
 tangwenlin41
 tzsentry
+esbuild
+msgpackr
+conname
